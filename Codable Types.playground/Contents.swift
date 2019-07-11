@@ -81,6 +81,12 @@ do {
     
     let jsonEncoder = JSONEncoder()
     jsonEncoder.outputFormatting = .prettyPrinted
+    let jsonData = try jsonEncoder.encode(scene)
+    try jsonData.write(to: jsonURL)
+    
+    let jsonDecoder = JSONDecoder()
+    let savedJSONData = try Data(contentsOf: jsonURL)
+    let jsonScene = try jsonDecoder.decode(Scene.self, from: savedJSONData)
 }
 catch {
     print(error)
