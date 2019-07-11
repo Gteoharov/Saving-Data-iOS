@@ -122,11 +122,13 @@ do {
     let jsonURL = scenesURL.appendingPathExtension("json")
     
     let jsonEncoder = JSONEncoder()
+    jsonEncoder.dateEncodingStrategy = .iso8601
     jsonEncoder.outputFormatting = .prettyPrinted
     let jsonData = try jsonEncoder.encode(scenes)
     try jsonData.write(to: jsonURL)
     
     let jsonDecoder = JSONDecoder()
+    jsonDecoder.dateDecodingStrategy = .iso8601
     let savedJSONData = try Data(contentsOf: jsonURL)
     let jsonScenes = try jsonDecoder.decode([Scene].self, from: savedJSONData)
     
@@ -135,6 +137,7 @@ do {
     let plistURL = scenesURL.appendingPathExtension("plist")
     
     let propertyListEncoder = PropertyListEncoder()
+    propertyListEncoder.outputFormat = .xml
     let propertyListData = try propertyListEncoder.encode(scenes)
     try propertyListData.write(to: plistURL)
     
