@@ -50,6 +50,10 @@ let stickerTwo = Sticker(name: "Bendji Zaks", birthday: DateComponents(calendar:
 
 let stickers: [Sticker] = [sticker, stickerTwo]
 
+let scene = Scene(width: 900, hasReverseGravity: true, backgroundName: "Space", stickers: stickers)
+
+scene.view
+
 do {
    let jsonURL = URL(fileURLWithPath: "stickers", relativeTo: FileManager.documentDirectoryURL.appendingPathComponent(Image.Kind.sticker.rawValue)
     ).appendingPathExtension("json")
@@ -71,3 +75,15 @@ catch {
     print(error)
 }
 
+do {
+    let jsonURL = URL(fileURLWithPath: "scene", relativeTo: FileManager.documentDirectoryURL.appendingPathComponent(Image.Kind.scene.rawValue)
+    ).appendingPathExtension("json")
+    
+    let jsonEncoder = JSONEncoder()
+    jsonEncoder.outputFormatting = .prettyPrinted
+}
+catch {
+    print(error)
+}
+
+FileManager.documentDirectoryURL
